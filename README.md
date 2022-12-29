@@ -40,7 +40,7 @@ import net.minestom.server.extensions.Extension;
 import net.minestom.server.extras.bungee.BungeeCordProxy;
 
 public class ExampleExtension extends Extension {
-    
+
     // This method should be used for things that ought to be done as soon as possible.
     @Override
     public void preInitialize() {
@@ -53,6 +53,12 @@ public class ExampleExtension extends Extension {
     public void initialize() {
         BungeeCordProxy.enable();
     }
-    
+
+    // This method is for anything you want to do after the server has started.
+    @Override
+    public void postInitialize() {
+
+    }
+
 }
 ```
