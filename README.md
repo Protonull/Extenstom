@@ -17,7 +17,7 @@ The resulting jar will be located at: `build/libs/BasicMinestomServer-<VERSION>.
 
 ## Usage
 
-You'll need Java 17 or above to run BasicMinestomServer. You need only execute it like so:
+You'll need Java 21 or above to run BasicMinestomServer. You need only execute it like so:
 ```shell
 java -jar BasicMinestomServer-<VERSION>.jar
 ```
