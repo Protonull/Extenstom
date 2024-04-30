@@ -5,9 +5,6 @@ on:
     branches:
       - "master"
   workflow_dispatch: {}
-  schedule:
-    # https://crontab.guru/#0_18_*_*_*
-    - cron: '0 18 * * *' # Everyday at 6pm
 
 jobs:
   release:
