@@ -5,6 +5,8 @@ plugins {
     id("java")
     // ShadowJar (https://github.com/johnrengelman/shadow/releases)
     id("com.github.johnrengelman.shadow") version "8.1.1"
+    // Git Patcher (https://github.com/zml2008/gitpatcher)
+    id("ca.stellardrift.gitpatcher") version "1.1.0"
 }
 
 group = "uk.protonull.minestom"
@@ -24,6 +26,14 @@ dependencies {
 java {
     toolchain {
         languageVersion.set(JavaLanguageVersion.of(21))
+    }
+}
+
+gitPatcher.patchedRepos {
+    create("Minestom") {
+        submodule = "libs/minestom/upstream"
+        target.set(File("libs/minestom/patched"))
+        patches.set(File("libs/minestom/patches"))
     }
 }
 

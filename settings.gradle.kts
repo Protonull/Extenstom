@@ -1,3 +1,3 @@
 rootProject.name = "BasicMinestomServer"
 
-includeBuild("libs/minestom/upstream")
+includeBuild(File("libs/minestom/patched").also { it.mkdirs() })
