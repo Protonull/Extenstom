@@ -3,7 +3,7 @@ package uk.protonull.minestom;
 import net.hollowcube.minestom.extensions.ExtensionBootstrap;
 import net.minestom.server.MinecraftServer;
 
-public final class Server {
+public final class BasicMinestomServer {
     public static void main(
         final String[] args
     ) {

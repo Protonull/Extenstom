@@ -40,7 +40,7 @@ gitPatcher.patchedRepos {
 tasks {
     jar {
         manifest {
-            attributes["Main-Class"] = "uk.protonull.minestom.Server"
+            attributes["Main-Class"] = "uk.protonull.minestom.BasicMinestomServer"
         }
     }
     build {
