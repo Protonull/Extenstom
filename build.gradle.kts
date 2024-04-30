@@ -4,7 +4,7 @@
 plugins {
     id("java")
     // ShadowJar (https://github.com/johnrengelman/shadow/releases)
-    id("com.github.johnrengelman.shadow") version "7.1.2"
+    id("com.github.johnrengelman.shadow") version "8.1.1"
 }
 
 group = "uk.protonull.minestom"
