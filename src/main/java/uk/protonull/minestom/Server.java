@@ -1,5 +1,6 @@
 package uk.protonull.minestom;
 
+import net.hollowcube.minestom.extensions.ExtensionBootstrap;
 import net.minestom.server.MinecraftServer;
 
 public final class Server {
@@ -8,7 +9,7 @@ public final class Server {
         final String host;
         final int port;
         try {
-            MinecraftServer.init().start(
+            ExtensionBootstrap.init().start(
                     host = getHost(),
                     port = getPort()
             );
