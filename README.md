@@ -7,7 +7,7 @@ BasicMinestomServer is an ***EXTREMELY*** basic [Minestom](https://github.com/Mi
 
 ## Install
 
-You can either use the provided latest build [here](https://github.com/Protonull/BasicMinestomServer/releases/tag/latest) or you can compile it yourself with JDK 17 by doing:
+You can either use the provided latest build [here](https://github.com/Protonull/BasicMinestomServer/releases/tag/latest) or you can compile it yourself with JDK 21 by doing:
 ```shell
 git clone --recursive https://github.com/Protonull/BasicMinestomServer.git
 cd BasicMinestomServer
