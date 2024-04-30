@@ -1,3 +1,3 @@
 rootProject.name = "BasicMinestomServer"
 
-includeBuild("Minestom")
+includeBuild("libs/minestom/upstream")

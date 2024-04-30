@@ -1,3 +1,3 @@
-[submodule "Minestom"]
-	path = Minestom
+[submodule "libs/minestom/upstream"]
+	path = libs/minestom/upstream
 	url = https://github.com/Minestom/Minestom.git
