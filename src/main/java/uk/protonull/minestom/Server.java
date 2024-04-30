@@ -4,14 +4,15 @@ import net.hollowcube.minestom.extensions.ExtensionBootstrap;
 import net.minestom.server.MinecraftServer;
 
 public final class Server {
-
-    public static void main(final String[] args) {
+    public static void main(
+        final String[] args
+    ) {
         final String host;
         final int port;
         try {
             ExtensionBootstrap.init().start(
-                    host = getHost(),
-                    port = getPort()
+                host = getHost(),
+                port = getPort()
             );
         }
         catch (final Throwable thrown) {
@@ -19,7 +20,7 @@ public final class Server {
             System.exit(1);
             return;
         }
-        MinecraftServer.LOGGER.info("Server: " + host + ":" + port);
+        MinecraftServer.LOGGER.info("Server: {}:{}", host, port);
     }
 
     private static final String DEFAULT_HOST = "0.0.0.0";
@@ -34,9 +35,8 @@ public final class Server {
             return Integer.parseInt(property);
         }
         catch (final NullPointerException | NumberFormatException ignored) {
-            MinecraftServer.LOGGER.warn("Could not parse [" + property + "] as a valid port, defaulting to: " + DEFAULT_PORT);
+            MinecraftServer.LOGGER.warn("Could not parse [{}] as a valid port, defaulting to [{}]", property, DEFAULT_PORT);
             return DEFAULT_PORT;
         }
     }
-
 }

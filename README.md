@@ -29,23 +29,21 @@ java -jar -Dhost="localhost" -Dport=25565 BasicMinestomServer-<VERSION>.jar
 
 ## Extending
 
-Any and all custom behaviour should be handled by [extensions](https://wiki.minestom.net/expansion/extensions). For example,
+Any and all custom behaviour should be handled by [extensions](https://github.com/hollow-cube/minestom-ce-extensions). For example,
 [StomCleanly](https://github.com/Protonull/StomCleanly) introduces a `/stop` command.
 
 ```java
-package exmple.extension;
+package example.extension;
 
 import net.minestom.server.MinecraftServer;
 import net.minestom.server.extensions.Extension;
 import net.minestom.server.extras.bungee.BungeeCordProxy;
 
 public class ExampleExtension extends Extension {
-
     // This method should be used for things that ought to be done as soon as possible.
     @Override
     public void preInitialize() {
         MinecraftServer.setBrandName("BestServerEverMC");
-        MinecraftServer.setTerminalEnabled(false);
     }
 
     // This method is for other things that occur prior to server start.
@@ -59,6 +57,5 @@ public class ExampleExtension extends Extension {
     public void postInitialize() {
 
     }
-
 }
 ```
