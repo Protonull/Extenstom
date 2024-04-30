@@ -17,9 +17,6 @@ repositories {
 
 dependencies {
     implementation("net.minestom:minestom:dev")
-
-    testImplementation("org.junit.jupiter:junit-jupiter-api:5.9.0")
-    testRuntimeOnly("org.junit.jupiter:junit-jupiter-engine:5.9.0")
 }
 
 java {
@@ -36,9 +33,6 @@ tasks {
     }
     build {
         dependsOn(shadowJar)
-    }
-    test {
-        useJUnitPlatform()
     }
     shadowJar {
         mergeServiceFiles()
