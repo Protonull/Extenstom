@@ -12,13 +12,11 @@ version = "1.0-SNAPSHOT"
 
 repositories {
     mavenCentral()
-    maven("https://jitpack.io")
+    maven("https://jitpack.io") // com.github.MadMartian:hydrazine-path-finding
 }
 
 dependencies {
-    implementation("com.github.Minestom:Minestom:-SNAPSHOT") {
-        isChanging = true
-    }
+    implementation("net.minestom:minestom:dev")
 
     testImplementation("org.junit.jupiter:junit-jupiter-api:5.9.0")
     testRuntimeOnly("org.junit.jupiter:junit-jupiter-engine:5.9.0")

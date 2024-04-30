@@ -9,7 +9,7 @@ BasicMinestomServer is an ***EXTREMELY*** basic [Minestom](https://github.com/Mi
 
 You can either use the provided latest build [here](https://github.com/Protonull/BasicMinestomServer/releases/tag/latest) or you can compile it yourself with JDK 17 by doing:
 ```shell
-git clone https://github.com/Protonull/BasicMinestomServer.git
+git clone --recursive https://github.com/Protonull/BasicMinestomServer.git
 cd BasicMinestomServer
 ./gradlew build
 ```
