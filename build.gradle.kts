@@ -43,9 +43,6 @@ tasks {
             attributes["Main-Class"] = "uk.protonull.minestom.BasicMinestomServer"
         }
     }
-    compileJava {
-        dependsOn(applyPatches)
-    }
     build {
         dependsOn(shadowJar)
     }

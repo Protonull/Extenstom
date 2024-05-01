@@ -21,6 +21,9 @@ jobs:
           distribution: "corretto"
           cache: "gradle"
 
+      - name: "Apply patches"
+        run: "./gradlew applyPatches"
+
       - name: "Compiling BasicMinestomServer"
         run: "./gradlew build --no-daemon"
 

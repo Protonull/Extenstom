@@ -11,6 +11,7 @@ You can either use the provided latest build [here](https://github.com/Protonull
 ```shell
 git clone --recursive https://github.com/Protonull/BasicMinestomServer.git
 cd BasicMinestomServer
+./gradlew applyPatches
 ./gradlew build
 ```
 The resulting jar will be located at: `build/libs/BasicMinestomServer-<VERSION>.jar`
