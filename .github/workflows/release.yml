@@ -1,4 +1,4 @@
-name: "BasicMinestomServer Maven CI"
+name: "Extenstom Gradle CI"
 
 on:
   push:
@@ -21,10 +21,10 @@ jobs:
           distribution: "corretto"
           cache: "gradle"
 
-      - name: "Apply patches"
+      - name: "Apply Minestom patches"
         run: "./gradlew applyPatches"
 
-      - name: "Compiling BasicMinestomServer"
+      - name: "Compiling Extenstom"
         run: "./gradlew build --no-daemon"
 
       - uses: "marvinpinto/action-automatic-releases@latest"

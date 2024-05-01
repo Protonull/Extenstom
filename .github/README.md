@@ -1,31 +1,32 @@
-# BasicMinestomServer
+# Extenstom
 
-[![GitHub](https://img.shields.io/github/license/Protonull/BasicMinestomServer?style=flat-square&color=b2204c)](https://github.com/Protonull/BasicMinestomServer/blob/master/LICENSE)
-[![GitHub Repo stars](https://img.shields.io/github/stars/Protonull/BasicMinestomServer?style=flat-square)](https://github.com/Protonull/BasicMinestomServer/stargazers)
+[![GitHub](https://img.shields.io/github/license/Protonull/Extenstom?style=flat-square&color=b2204c)](https://github.com/Protonull/Extenstom/blob/master/LICENCE.txt)
+[![GitHub Repo stars](https://img.shields.io/github/stars/Protonull/Extenstom?style=flat-square)](https://github.com/Protonull/Extenstom/stargazers)
 
-BasicMinestomServer is an ***EXTREMELY*** basic [Minestom](https://github.com/Minestom/Minestom) server in that it produces a jar that'll run... and that's it.
+Extenstom is an ***EXTREMELY*** barebones implementation of [Minestom](https://github.com/Minestom/Minestom) that defers
+any and all custom behaviour to extensions.
 
 ## Install
 
-You can either use the provided latest build [here](https://github.com/Protonull/BasicMinestomServer/releases/tag/latest) or you can compile it yourself with JDK 21 by doing:
+You can either use the latest build [here](https://github.com/Protonull/Extenstom/releases/tag/latest) or you can compile it yourself with JDK 21 by doing:
 ```shell
-git clone --recursive https://github.com/Protonull/BasicMinestomServer.git
-cd BasicMinestomServer
+git clone --recursive https://github.com/Protonull/Extenstom.git
+cd Extenstom
 ./gradlew applyPatches
 ./gradlew build
 ```
-The resulting jar will be located at: `build/libs/BasicMinestomServer-<VERSION>.jar`
+The resulting jar will be located at: `build/libs/Extenstom-<VERSION>.jar`
 
 ## Usage
 
-You'll need Java 21 or above to run BasicMinestomServer. You need only execute it like so:
+You'll need Java 21 or above to run Extenstom. You need only execute it like so:
 ```shell
-java -jar BasicMinestomServer-<VERSION>.jar
+java -jar Extenstom-<VERSION>.jar
 ```
 
 You can also set the `host` and `port` values like so (otherwise they'll default to `localhost` and `25565` respectively):
 ```shell
-java -jar -Dhost="localhost" -Dport=25565 BasicMinestomServer-<VERSION>.jar
+java -jar -Dhost="localhost" -Dport=25565 Extenstom-<VERSION>.jar
 ```
 
 ## Extending
