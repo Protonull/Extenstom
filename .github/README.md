@@ -30,15 +30,20 @@ java -jar -Dhost="localhost" -Dport=25565 BasicMinestomServer-<VERSION>.jar
 
 ## Extending
 
-Any and all custom behaviour should be handled by [extensions](https://github.com/hollow-cube/minestom-ce-extensions). For example,
-[StomCleanly](https://github.com/Protonull/StomCleanly) introduces a `/stop` command.
+Any and all custom behaviour MUST be handled by [extensions](EXTENSIONS.md) via [minestom-ce-extensions](https://github.com/hollow-cube/minestom-ce-extensions#usage).
+For example, [StomCleanly](https://github.com/Protonull/StomCleanly) introduces a `/stop` command.
 
 ```java
 package example.extension;
 
 import net.minestom.server.MinecraftServer;
+import net.minestom.server.coordinate.Pos;
+import net.minestom.server.entity.Player;
+import net.minestom.server.event.player.AsyncPlayerConfigurationEvent;
 import net.minestom.server.extensions.Extension;
 import net.minestom.server.extras.bungee.BungeeCordProxy;
+import net.minestom.server.instance.InstanceContainer;
+import net.minestom.server.instance.block.Block;
 
 public class ExampleExtension extends Extension {
     // This method should be used for things that ought to be done as soon as possible.
@@ -54,8 +59,30 @@ public class ExampleExtension extends Extension {
     }
 
     // This method is for anything you want to do after the server has started.
+    // This is based on the "Your first server" wiki page: https://wiki.minestom.net/setup/your-first-server
     @Override
     public void postInitialize() {
+        // Create a new instance
+        final InstanceContainer instanceContainer = MinecraftServer.getInstanceManager().createInstanceContainer();
+
+        // Set the ChunkGenerator
+        instanceContainer.setGenerator((unit) -> {
+            unit.modifier().fillHeight(0, 0, Block.BEDROCK);
+            unit.modifier().fillHeight(1, 39, Block.DIRT);
+            unit.modifier().fillHeight(40, 40, Block.GRASS_BLOCK);
+        });
+
+        // Listen for player logins and put them in the instance
+        MinecraftServer.getGlobalEventHandler().addListener(AsyncPlayerConfigurationEvent.class, (event) -> {
+            final Player player = event.getPlayer();
+            event.setSpawningInstance(instanceContainer);
+            player.setRespawnPoint(new Pos(0, 42, 0));
+        });
+    }
+
+    // This method is called when your extension is disabled, like during shutdown
+    @Override
+    public void terminate() {
 
     }
 }
