@@ -20,7 +20,7 @@ public final class BasicMinestomServer {
             System.exit(1);
             return;
         }
-        MinecraftServer.LOGGER.info("Server: {}:{}", host, port);
+        MinecraftServer.LOGGER.info("Server: {}:{} ({}:{})", host, port, MinecraftServer.VERSION_NAME, MinecraftServer.PROTOCOL_VERSION);
     }
 
     private static final String DEFAULT_HOST = "0.0.0.0";
