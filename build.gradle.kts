@@ -19,7 +19,6 @@ repositories {
 
 dependencies {
     implementation("net.minestom:minestom:dev")
-    implementation("dev.hollowcube:minestom-ce-extensions:1.2.0")
     implementation("ch.qos.logback:logback-classic:1.5.6")
 }
 

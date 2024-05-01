@@ -1,0 +1,49 @@
+From 0000000000000000000000000000000000000000 Mon Sep 17 00:00:00 2001
+From: Alexander <protonull@protonmail.com>
+Date: Wed, 1 May 2024 08:22:20 +0100
+Subject: [PATCH] Re-add MinecraftServer.getExtensionManager()
+
+
+diff --git a/build.gradle.kts b/build.gradle.kts
+index e1a68af1d19ac86799796083a205517d4915e06a..546c5e20fbdf9d79987b1389093c0aec84aa864b 100644
+--- a/build.gradle.kts
++++ b/build.gradle.kts
+@@ -87,6 +87,9 @@ dependencies {
+     api(libs.gson)
+     implementation(libs.jcTools)
+ 
++    // Extensions
++    api("dev.hollowcube:minestom-ce-extensions:1.2.0")
++
+     // Testing
+     testImplementation(libs.bundles.junit)
+     testImplementation(project(":testing"))
+diff --git a/src/main/java/net/minestom/server/MinecraftServer.java b/src/main/java/net/minestom/server/MinecraftServer.java
+index d8ffa960217a739ef5edd4f554459a9d92efea65..9b0671c25742b20a57ff60166b88a9f594e68ff1 100644
+--- a/src/main/java/net/minestom/server/MinecraftServer.java
++++ b/src/main/java/net/minestom/server/MinecraftServer.java
+@@ -34,6 +34,11 @@ import java.io.IOException;
+ import java.net.InetSocketAddress;
+ import java.net.SocketAddress;
+ 
++// BasicMinestomServer start
++import net.hollowcube.minestom.extensions.ExtensionBootstrap;
++import net.minestom.server.extensions.ExtensionManager;
++// BasicMinestomServer end
++
+ /**
+  * The main server class used to start the server and retrieve all the managers.
+  * <p>
+@@ -252,6 +257,12 @@ public final class MinecraftServer {
+         return serverProcess.advancement();
+     }
+ 
++    // BasicMinestomServer start
++    public static ExtensionManager getExtensionManager() {
++        return ExtensionBootstrap.getExtensionManager();
++    }
++    // BasicMinestomServer end
++
+     public static TagManager getTagManager() {
+         return serverProcess.tag();
+     }
