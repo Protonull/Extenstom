@@ -1,6 +1,5 @@
 # Any OS/IDE files should be within your global .gitignore
 
-/libs/*/patched
 /extensions
 
 # Created by https://www.toptal.com/developers/gitignore/api/gradle

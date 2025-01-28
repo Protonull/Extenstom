@@ -3,16 +3,16 @@
 [![GitHub](https://img.shields.io/github/license/Protonull/Extenstom?style=flat-square&color=b2204c)](https://github.com/Protonull/Extenstom/blob/master/LICENCE.txt)
 [![GitHub Repo stars](https://img.shields.io/github/stars/Protonull/Extenstom?style=flat-square)](https://github.com/Protonull/Extenstom/stargazers)
 
-Extenstom is an ***EXTREMELY*** barebones implementation of [Minestom](https://github.com/Minestom/Minestom) that defers
-any and all custom behaviour to extensions.
+Extenstom is an ***EXTREMELY*** barebones implementation of [Microtus](https://github.com/OneLiteFeatherNET/Microtus)
+that defers any and all custom behaviour to extensions.
 
 ## Install
 
-You can either use the latest build [here](https://github.com/Protonull/Extenstom/releases/tag/latest) or you can compile it yourself with JDK 21 by doing:
+You can either use the latest build [here](https://github.com/Protonull/Extenstom/releases/tag/latest) or you can
+compile it yourself with JDK 21 by doing:
 ```shell
-git clone --recursive https://github.com/Protonull/Extenstom.git
+git clone https://github.com/Protonull/Extenstom.git
 cd Extenstom
-./gradlew applyPatches
 ./gradlew build
 ```
 The resulting jar will be located at: `build/libs/Extenstom-<VERSION>.jar`
@@ -24,15 +24,14 @@ You'll need Java 21 or above to run Extenstom. You need only execute it like so:
 java -jar Extenstom-<VERSION>.jar
 ```
 
-You can also set the `host` and `port` values like so (otherwise they'll default to `localhost` and `25565` respectively):
+You can also set the hostname and port values like so (otherwise they'll default to `localhost` and `25565` respectively):
 ```shell
-java -jar -Dhost="localhost" -Dport=25565 Extenstom-<VERSION>.jar
+java -jar -Dextenstom.host="localhost" -Dextenstom.port=25565 Extenstom-<VERSION>.jar
 ```
 
 ## Extending
 
-Any and all custom behaviour MUST be handled by [extensions](EXTENSIONS.md) via [minestom-ce-extensions](https://github.com/hollow-cube/minestom-ce-extensions#usage).
-For example, [StomCleanly](https://github.com/Protonull/StomCleanly) introduces a `/stop` command.
+Any and all custom behaviour MUST be handled by [extensions](https://wiki.microtus.dev/extension-system/extensions).
 
 ```java
 package example.extension;
@@ -60,7 +59,7 @@ public class ExampleExtension extends Extension {
     }
 
     // This method is for anything you want to do after the server has started.
-    // This is based on the "Your first server" wiki page: https://wiki.minestom.net/setup/your-first-server
+    // This is based on the "Your first server" wiki page: https://wiki.microtus.dev/getting-started/your-first-server
     @Override
     public void postInitialize() {
         // Create a new instance

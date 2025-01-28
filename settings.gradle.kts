@@ -1,3 +1,4 @@
-rootProject.name = "Extenstom"
+// Update Gradle Wrapper using: ./gradlew wrapper --distribution-type bin --gradle-version <version>
+// See Gradle's releases here: https://gradle.org/releases/
 
-includeBuild(File("libs/minestom/patched").also { it.mkdirs() })
+rootProject.name = "Extenstom"

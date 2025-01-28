@@ -1,52 +1,58 @@
-// Update Gradle Wrapper using: ./gradlew wrapper --distribution-type bin --gradle-version <version>
-// See Gradle's releases here: https://gradle.org/releases/
-
 plugins {
     id("java")
-    // ShadowJar (https://github.com/johnrengelman/shadow/releases)
-    id("com.github.johnrengelman.shadow") version "8.1.1"
-    // Git Patcher (https://github.com/zml2008/gitpatcher)
-    id("ca.stellardrift.gitpatcher") version "1.1.0"
+    // https://github.com/GradleUp/shadow/releases
+    id("com.gradleup.shadow") version("8.3.5")
 }
 
-group = "uk.protonull.minestom"
-version = "1.0-SNAPSHOT"
+val MICROTUS_VERSION = "1.5.1"
+val MAIN_CLASS = "uk.protonull.extenstom.Extenstom"
+
+group = "uk.protonull.extenstom"
+version = "${MICROTUS_VERSION}-1"
+
+dependencies {
+    // https://github.com/OneLiteFeatherNET/Microtus/releases
+    implementation(platform("net.onelitefeather.microtus:bom:${MICROTUS_VERSION}"))
+    implementation("net.onelitefeather.microtus:Microtus")
+}
 
 repositories {
     mavenCentral()
-    maven("https://jitpack.io") // com.github.MadMartian:hydrazine-path-finding
-}
-
-dependencies {
-    implementation("net.minestom:minestom:dev")
-    implementation("ch.qos.logback:logback-classic:1.5.6")
 }
 
 java {
     toolchain {
-        languageVersion.set(JavaLanguageVersion.of(21))
+        languageVersion = JavaLanguageVersion.of(21)
     }
-}
-
-gitPatcher.patchedRepos {
-    create("Minestom") {
-        submodule = "libs/minestom/upstream"
-        target.set(File("libs/minestom/patched"))
-        patches.set(File("libs/minestom/patches"))
-    }
+    sourceCompatibility = JavaVersion.VERSION_21
+    targetCompatibility = JavaVersion.VERSION_21
 }
 
 tasks {
+    compileJava {
+        options.encoding = "UTF-8"
+        options.release = 21
+    }
     jar {
         manifest {
-            attributes["Main-Class"] = "uk.protonull.minestom.Extenstom"
+            attributes["Main-Class"] = MAIN_CLASS
         }
+    }
+    shadowJar {
+        archiveClassifier = ""
+        mergeServiceFiles()
     }
     build {
         dependsOn(shadowJar)
     }
-    shadowJar {
-        mergeServiceFiles()
-        archiveClassifier.set("") // Prevent the -all suffix
+    register<JavaExec>("run") {
+        mainClass = MAIN_CLASS
+        classpath = sourceSets["main"].runtimeClasspath
+        jvmArgs = listOf(
+            "-Dextenstom.host=0.0.0.0",
+            "-Dextenstom.port=25565",
+            "-Dminestom.bstats.id=00000000-0000-0000-0000-000000000000",
+            "-Dminestom.terminal.disabled=true",
+        )
     }
 }
