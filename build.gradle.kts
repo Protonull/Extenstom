@@ -1,7 +1,7 @@
 plugins {
     id("java")
     // https://github.com/GradleUp/shadow/releases
-    id("com.gradleup.shadow") version("8.3.5")
+    id("com.gradleup.shadow") version("8.3.6")
 }
 
 val MICROTUS_VERSION = "1.5.1"
