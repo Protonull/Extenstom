@@ -53,6 +53,9 @@ tasks {
         dependsOn(cleanDistDir)
         into(file("dist/"))
     }
+    clean {
+        dependsOn(cleanDistDir)
+    }
     build {
         dependsOn(shadowJar, copyDistJar)
     }
