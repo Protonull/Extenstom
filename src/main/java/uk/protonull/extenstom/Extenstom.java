@@ -1,5 +1,8 @@
 package uk.protonull.extenstom;
 
+import java.net.InetAddress;
+import java.net.InetSocketAddress;
+import java.net.UnknownHostException;
 import net.minestom.server.MinecraftServer;
 import org.jetbrains.annotations.NotNull;
 
@@ -10,12 +13,10 @@ public final class Extenstom {
         // Enable extensions
         System.setProperty("minestom.extension.enabled", "true");
 
-        final String host;
-        final int port;
+        final InetSocketAddress serverAddress;
         try {
             MinecraftServer.init().start(
-                host = getHost(),
-                port = getPort()
+                serverAddress = new InetSocketAddress(getHost(), getPort())
             );
         }
         catch (final Throwable thrown) {
@@ -25,29 +26,40 @@ public final class Extenstom {
         }
         MinecraftServer.LOGGER.info(
             "Server started on {}:{} ({}:{})",
-            host,
-            port,
+            serverAddress.getHostString(),
+            serverAddress.getPort(),
             MinecraftServer.VERSION_NAME,
             MinecraftServer.PROTOCOL_VERSION
         );
     }
 
-    private static final String DEFAULT_HOST = "0.0.0.0";
-    private static String getHost() {
-        return System.getProperty("extenstom.host", null) instanceof final String host ? host : DEFAULT_HOST;
+    private static @NotNull InetAddress getHost() {
+        return switch (System.getProperty("extenstom.host", null)) {
+            case final String host:
+                try {
+                    yield InetAddress.getByName(host.trim());
+                }
+                catch (final UnknownHostException ignored) {
+                    MinecraftServer.LOGGER.warn("INVALID HOST [{}], USING DEFAULT!", host);
+                    // FALLTHROUGH
+                }
+            case null:
+                yield InetAddress.getLoopbackAddress();
+        };
     }
 
-    private static final int DEFAULT_PORT = 25565;
     private static int getPort() {
-        if (!(System.getProperty("extenstom.port", null) instanceof final String port)) {
-            return DEFAULT_PORT;
-        }
-        try {
-            return Integer.parseInt(port);
-        }
-        catch (final NumberFormatException ignored) {
-            MinecraftServer.LOGGER.warn("Could not parse [{}] as a valid port, defaulting to [{}]", port, DEFAULT_PORT);
-            return DEFAULT_PORT;
-        }
+        return switch (System.getProperty("extenstom.port", null)) {
+            case final String port:
+                try {
+                    yield Integer.parseInt(port.trim());
+                }
+                catch (final NumberFormatException ignored) {
+                    MinecraftServer.LOGGER.warn("INVALID PORT [{}], USING DEFAULT!", port);
+                    // FALLTHROUGH
+                }
+            case null:
+                yield 25565;
+        };
     }
 }
