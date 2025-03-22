@@ -15,7 +15,7 @@ git clone https://github.com/Protonull/Extenstom.git
 cd Extenstom
 ./gradlew build
 ```
-The resulting jar will be located at: `build/libs/Extenstom-<VERSION>.jar`
+The resulting jar will be located at: `dist/Extenstom-<VERSION>.jar`
 
 ## Usage
 
