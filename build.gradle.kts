@@ -5,7 +5,7 @@ plugins {
 }
 
 val MICROTUS_VERSION = "1.5.1"
-val EXTENSTOM_VERSION = "1"
+val EXTENSTOM_VERSION = "2"
 val MAIN_CLASS = "uk.protonull.extenstom.Extenstom"
 
 group = "uk.protonull.extenstom"
