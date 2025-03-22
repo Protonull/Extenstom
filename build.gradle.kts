@@ -5,10 +5,11 @@ plugins {
 }
 
 val MICROTUS_VERSION = "1.5.1"
+val EXTENSTOM_VERSION = "1"
 val MAIN_CLASS = "uk.protonull.extenstom.Extenstom"
 
 group = "uk.protonull.extenstom"
-version = "${MICROTUS_VERSION}-1"
+version = "${MICROTUS_VERSION}-${EXTENSTOM_VERSION}"
 
 dependencies {
     // https://github.com/OneLiteFeatherNET/Microtus/releases
@@ -42,8 +43,18 @@ tasks {
         archiveClassifier = ""
         mergeServiceFiles()
     }
+    val cleanDistDir = register<Delete>("cleanDistDir") {
+        delete(fileTree(file("dist/")) {
+            include("*.jar")
+        })
+    }
+    val copyDistJar = register<Copy>("copyDistJar") {
+        from(shadowJar, jar)
+        dependsOn(cleanDistDir)
+        into(file("dist/"))
+    }
     build {
-        dependsOn(shadowJar)
+        dependsOn(shadowJar, copyDistJar)
     }
     register<JavaExec>("run") {
         mainClass = MAIN_CLASS
